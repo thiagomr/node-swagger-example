@@ -1,0 +1,173 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "1.0.0",
+        "title": "NodeJS API",
+        "description": "A NodeJS API example",
+        "license": {
+            "name": "MIT",
+            "url": "https://opensource.org/licenses/MIT"
+        }
+    },
+    "host": "localhost:5000",
+    "basePath": "/v1",
+    "tags": [
+        {
+            "name": "Games",
+            "description": "API for games"
+        }
+    ],
+    "schemes": [
+        "http"
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/game": {
+            "post": {
+                "tags": [
+                    "Games"
+                ],
+                "description": "Create new games",
+                "parameters": [
+                    {
+                        "name": "game",
+                        "in": "body",
+                        "description": "Create a new game",
+                        "schema": {
+                            "$ref": "#/definitions/GamePost"
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "New game is created",
+                        "schema": {
+                            "$ref": "#/definitions/Game"
+                        }
+                    }
+                }
+            },
+            "get": {
+                "tags": [
+                    "Games"
+                ],
+                "summary": "Get all games",
+                "responses": {
+                    "200": {
+                        "description": "Retrieve all games",
+                        "schema": {
+                            "$ref": "#/definitions/Games"
+                        }
+                    }
+                }
+            }
+        },
+        "/game/{id}": {
+            "parameters": [
+                {
+                    "name": "id",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of game that we want to find",
+                    "type": "string"
+                }
+            ],
+            "get": {
+                "tags": [
+                    "Games"
+                ],
+                "summary": "Get game by ID",
+                "responses": {
+                    "200": {
+                        "description": "Game is found",
+                        "schema": {
+                            "$ref": "#/definitions/Game"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Delete game by ID",
+                "tags": [
+                    "Games"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Game is deleted",
+                        "schema": {
+                            "$ref": "#/definitions/Game"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "summary": "Update game by ID",
+                "tags": [
+                    "Games"
+                ],
+                "parameters": [
+                    {
+                        "name": "game",
+                        "in": "body",
+                        "description": "Game with new values of properties",
+                        "schema": {
+                            "$ref": "#/definitions/GamePost"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Game is updated",
+                        "schema": {
+                            "$ref": "#/definitions/Game"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "Game": {
+            "properties": {
+                "_id": {
+                    "type": "string",
+                    "uniqueItems": true
+                },
+                "title": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "created_at": {
+                    "type": "string"
+                },
+                "updated_at": {
+                    "type": "string"
+                }
+            }
+        },
+        "GamePost": {
+            "properties": {
+                "title": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                }
+            }
+        },
+        "Games": {
+            "type": "array",
+            "$ref": "#/definitions/Game"
+        }
+    }
+}

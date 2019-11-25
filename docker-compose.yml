@@ -1,0 +1,17 @@
+version: '3'
+services:
+  game-api:
+    container_name: game-api
+    build: .
+    ports:
+    - "5000:5000"
+    restart: on-failure
+    depends_on:
+      - mongo
+  mongo:
+    container_name: mongo
+    image: mongo
+    ports:
+    - "27017:27017"
+    expose:
+    - "27017"

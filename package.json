@@ -1,0 +1,38 @@
+{
+  "name": "node-swagger-example",
+  "version": "1.0.0",
+  "description": "A simple API with Swagger",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "start:dev": "nodemon index.js",
+    "lint": "eslint . --ext .js",
+    "lint-fix": "eslint . --ext .js --fix"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.js": [
+      "npm run lint",
+      "git add"
+    ]
+  },
+  "keywords": [],
+  "author": "Thiago de Moraes",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "moment-timezone": "^0.5.27",
+    "mongoose": "^5.7.12",
+    "swagger-ui-express": "^4.1.2"
+  },
+  "devDependencies": {
+    "eslint": "^6.6.0",
+    "husky": "^3.1.0",
+    "lint-staged": "^9.4.3"
+  }
+}
