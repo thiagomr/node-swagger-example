@@ -1,1 +1,1 @@
-# node-rabbitmq-api
+# node-swagger-example
